@@ -1,10 +1,10 @@
 # News (iOS)
 
-![Apple](https://img.shields.io/badge/iOS-17-FFFF66?logo=apple) ![Language](https://img.shields.io/badge/Swift-5-blue?logo=swift) ![UI](https://img.shields.io/badge/SwiftUI-yelow?logo=NextUI) ![License](https://img.shields.io/badge/license-MIT-EF443B?logo=Cachet)
+![Apple](https://img.shields.io/badge/iOS-17-FFFF66?logo=apple) ![Language](https://img.shields.io/badge/Swift-5-blue?logo=swift) ![UI](https://img.shields.io/badge/SwiftUI-5-yelow?logo=NextUI) ![License](https://img.shields.io/badge/license-MIT-EF443B?logo=Cachet)
 
 Free worldwide news app
 
-![Title](/img/title.png)
+![Title](/img/title.webp)
 
 ## Architecture
 
