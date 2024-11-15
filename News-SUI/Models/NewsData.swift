@@ -14,11 +14,11 @@ struct NewsData: Decodable {
     let keywords: String
     let snippet: String
     let url: String
-    let imageURL: String
+    let image: Data?
     let language: String
     let publishedAt: String
     let source: String
     let categories: [String]
-    let relevanceScore: String?
+    let relevanceScore: String
     let locale: String
 }

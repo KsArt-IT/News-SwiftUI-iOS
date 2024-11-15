@@ -7,12 +7,10 @@
 
 import Foundation
 
-// MARK: - Welcome
 struct NewsResponseErrors: Decodable {
     let error: NewsError
 }
 
-// MARK: - Error
 struct NewsError: Decodable {
     let code: String
     let message: String

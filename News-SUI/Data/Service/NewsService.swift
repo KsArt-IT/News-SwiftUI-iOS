@@ -8,6 +8,6 @@
 import Foundation
 
 protocol NewsService: AnyObject {
-    func fetchData<T>(endpoint: NewsEndpoint) async -> Result<T, any Error> where T : Decodable
+    func fetchData<T>(endpoint: NewsEndpoint) async -> Result<T, any Error> where T: Decodable
     func fetchData(url: String) async -> Data?
 }
