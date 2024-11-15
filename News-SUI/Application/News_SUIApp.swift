@@ -14,4 +14,8 @@ struct News_SUIApp: App {
             ContentView()
         }
     }
+    
+    init() {
+        print("Use api key: '\(NewsEndpoint.apiKey)'")
+    }
 }
