@@ -14,6 +14,7 @@ final class DIManager {
     // MARK: - Registering dependencies
     init() {
         registerRepository()
+        registerMainViewModel()
     }
     
     private func registerRepository() {
@@ -23,10 +24,13 @@ final class DIManager {
         
         container.register(NewsRepository.self) { c in
             NewsRepositoryImpl(service: c.resolve(NewsService.self)!)
-        }
+        }.inObjectScope(.container)
     }
     
     private func registerMainViewModel() {
+        container.register(MainViewModel.self) { c in
+            MainViewModel(repository: c.resolve(NewsRepository.self)!)
+        }.inObjectScope(.weak)
     }
     
     // MARK: - Getting dependencies
