@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct NewsData: Decodable {
-    let uuid: String
+struct NewsData: Identifiable, Decodable {
+    let id: String
     let title: String
     let description: String
     let keywords: String
@@ -19,6 +19,5 @@ struct NewsData: Decodable {
     let publishedAt: String
     let source: String
     let categories: [String]
-    let relevanceScore: String
     let locale: String
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 struct NewsResponse: Decodable {
-    let warnings: [String]
+    let warnings: [String]? // иногда появляется
     let meta: Meta
     let data: [NewsDataDto]
 }

@@ -29,7 +29,7 @@ final class NewsRepositoryImpl: NewsRepository {
         case .success(let news):
             var newsWithImage: [NewsData] = []
             for entity in news {
-                let imageData = await service.fetchData(url: entity.imageURL)
+                let imageData = await service.fetchData(url: entity.imageUrl)
                 newsWithImage.append(entity.mapToDomain(data: imageData))
             }
             return .success(newsWithImage)
@@ -42,14 +42,10 @@ final class NewsRepositoryImpl: NewsRepository {
         let result: Result<NewsDataDto, any Error> = await service.fetchData(endpoint: .news(id: id))
         switch result {
         case .success(let news):
-            let imageData = await service.fetchData(url: news.imageURL)
+            let imageData = await service.fetchData(url: news.imageUrl)
             return .success(news.mapToDomain(data: imageData))
         case .failure(let error):
             return .failure(error)
         }
-    }
-    
-    private func fetchImage(from url: String) async -> Data? {
-        await service.fetchData(url: url)
     }
 }

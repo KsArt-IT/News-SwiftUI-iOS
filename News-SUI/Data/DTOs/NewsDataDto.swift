@@ -14,20 +14,20 @@ struct NewsDataDto: Decodable {
     let keywords: String
     let snippet: String
     let url: String
-    let imageURL: String
+    let imageUrl: String
     let language: String
     let publishedAt: String
     let source: String
     let categories: [String]
-    let relevanceScore: String?
-    let locale: String
+    // по id этого нет
+    let locale: String?
 }
 
 extension NewsDataDto {
     
     func mapToDomain(data: Data? = nil) -> NewsData {
         NewsData(
-            uuid: self.uuid,
+            id: self.uuid,
             title: self.title,
             description: self.description,
             keywords: self.keywords,
@@ -38,8 +38,7 @@ extension NewsDataDto {
             publishedAt: self.publishedAt,
             source: self.source,
             categories: self.categories,
-            relevanceScore: self.relevanceScore ?? "",
-            locale: self.locale
+            locale: self.locale ?? ""
         )
     }
 }

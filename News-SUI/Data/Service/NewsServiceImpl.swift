@@ -20,11 +20,12 @@ final class NewsServiceImpl: NewsService {
     
     // MARK: - Getting data from the network
     func fetchData<T>(endpoint: NewsEndpoint) async -> Result<T, any Error> where T : Decodable {
+        print("NewsServiceImpl: \(#function)")
         guard let request = endpoint.request else { return .failure(NetworkError.invalidRequest) }
         
         do {
             let data = try await fetchData(for: request)
-            let result: T = try decode(data)
+            let result: T = try decodeNews(data)
             
             return .success(result)
         } catch let error as NetworkError {
@@ -34,27 +35,32 @@ final class NewsServiceImpl: NewsService {
         } catch let error as URLError where error.code == .cancelled {
             return .failure(NetworkError.cancelled)
         } catch {
-            print("NewsServiceImpl: \(error)")
+            print("NewsServiceImpl: \(#function) error: \(error.localizedDescription)")
             return .failure(NetworkError.networkError(error))
         }
     }
     
     func fetchData(url: String) async -> Data? {
+        print("NewsServiceImpl: \(#function)")
         guard let url = URL(string: url) else { return nil }
         
         do {
-            let request = URLRequest(url: url)
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            request.timeoutInterval = 20
+            
             let data = try await fetchData(for: request)
             
             return data
         } catch {
-            print("NewsServiceImpl: error=\(error.localizedDescription)")
+            print("NewsServiceImpl: \(#function) error: \(error.localizedDescription)")
             return nil
         }
     }
     
     // MARK: - URLRequest
     private func fetchData(for reques: URLRequest) async throws -> Data {
+        print("NewsServiceImpl: \(#function)")
         let (data, response) = try await session.data(for: reques)
         if let code = getErrorCode(for: response) {
             try getErrorMsg(code, from: data)
@@ -64,6 +70,7 @@ final class NewsServiceImpl: NewsService {
     
     // MARK: - Error handling
     private func getErrorCode(for response: URLResponse) -> Int? {
+        print("NewsServiceImpl: \(#function)")
         guard let httpResponse = response as? HTTPURLResponse else { return -1 }
         
         return 200...299 ~= httpResponse.statusCode ? nil : httpResponse.statusCode
@@ -75,10 +82,23 @@ final class NewsServiceImpl: NewsService {
         } else {
             ""
         }
+        print("NewsServiceImpl: \(#function) error: \(message)")
         throw NetworkError.invalidResponse(code: code, message: message)
     }
     
     // MARK: - Decode data
+    private func decodeNews<T>(_ data: Data) throws -> T where T: Decodable {
+        if isArrayNews(of: T.self), let response: NewsResponse = try decode(data), let news = response.data as? T  {
+            news
+        } else {
+            try decode(data)
+        }
+    }
+    
+    private func isArrayNews<T>(of type: T) -> Bool {
+        type.self is Array<NewsDataDto>.Type
+    }
+    
     private func decode<T>(_ data: Data) throws -> T where T: Decodable {
         try decoder.decode(T.self, from: data)
     }
