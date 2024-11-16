@@ -8,7 +8,7 @@
 import Foundation
 
 protocol NewsRepository: AnyObject {
-    func fetchTopNews(language: String, page: Int) async -> Result<[NewsData], any Error>
-    func fetchAllNews(language: String, page: Int) async -> Result<[NewsData], any Error>
+    func fetchTopNews(locale: String, language: String, page: Int) async -> Result<[NewsData], any Error>
+    func fetchAllNews(locale: String, language: String, page: Int) async -> Result<[NewsData], any Error>
     func fetchNews(id: String) async -> Result<NewsData, any Error>
 }

@@ -36,6 +36,29 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "ru"
+          }
+        }
+      }
+    },
+    "locale" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "us"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ru"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "ua"
           }
         }

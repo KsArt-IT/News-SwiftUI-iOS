@@ -15,11 +15,11 @@ final class NewsRepositoryImpl: NewsRepository {
         self.service = service
     }
     
-    func fetchTopNews(language: String, page: Int) async -> Result<[NewsData], any Error> {
-        await fetchData(endpoint: .top(language: language, page: page))
+    func fetchTopNews(locale: String, language: String, page: Int) async -> Result<[NewsData], any Error> {
+        await fetchData(endpoint: .top(locale: locale, language: language, page: page))
     }
     
-    func fetchAllNews(language: String, page: Int) async -> Result<[NewsData], any Error> {
+    func fetchAllNews(locale: String, language: String, page: Int) async -> Result<[NewsData], any Error> {
         await fetchData(endpoint: .all(language: language, page: page))
     }
     

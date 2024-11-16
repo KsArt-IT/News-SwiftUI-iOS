@@ -8,7 +8,7 @@
 import Foundation
 
 enum NewsEndpoint {
-    case top(language: String, page: Int)
+    case top(locale: String, language: String, page: Int)
     case all(language: String, page: Int)
     case news(id: String)
 }
@@ -29,10 +29,11 @@ extension NewsEndpoint {
     
     private var url: URL? {
         switch self {
-        case let .top(language, page):
+        case let .top(locale, language, page):
             getUrl(
                 path: "/top",
                 query: [
+                    Self.localeParam: locale,
                     Self.languageParam: language,
                     Self.pageParam: "\(page)",
                 ]
@@ -84,6 +85,7 @@ extension NewsEndpoint {
     
     // Query params
     private static let apiKeyParam = "api_token"
+    private static let localeParam = "locale"
     private static let languageParam = "language"
     private static let pageParam = "page"
     
