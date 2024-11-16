@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F121AB202CE8C3CD0071A80A /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = F121AB1F2CE8C3CD0071A80A /* Swinject */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		F103C85D2CE749DC00FF36C5 /* News-SUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "News-SUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F121AB202CE8C3CD0071A80A /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 			);
 			name = "News-SUI";
 			packageProductDependencies = (
+				F121AB1F2CE8C3CD0071A80A /* Swinject */,
 			);
 			productName = "News-SUI";
 			productReference = F103C85D2CE749DC00FF36C5 /* News-SUI.app */;
@@ -109,6 +115,9 @@
 			);
 			mainGroup = F103C8542CE749DB00FF36C5;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				F121AB1E2CE8C3CD0071A80A /* XCRemoteSwiftPackageReference "Swinject" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F103C85E2CE749DC00FF36C5 /* Products */;
 			projectDirPath = "";
@@ -357,6 +366,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F121AB1E2CE8C3CD0071A80A /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F121AB1F2CE8C3CD0071A80A /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F121AB1E2CE8C3CD0071A80A /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F103C8552CE749DB00FF36C5 /* Project object */;
 }

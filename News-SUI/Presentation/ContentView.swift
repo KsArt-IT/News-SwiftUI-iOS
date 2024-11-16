@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.diManager) var di
+    
     var body: some View {
         MainScreen()
     }
