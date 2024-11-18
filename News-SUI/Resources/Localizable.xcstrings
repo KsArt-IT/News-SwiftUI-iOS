@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "All News" : {
+
+    },
     "Decoding failed with error" : {
       "localizations" : {
         "ru" : {
@@ -111,6 +114,9 @@
           }
         }
       }
+    },
+    "Top News" : {
+
     }
   },
   "version" : "1.0"

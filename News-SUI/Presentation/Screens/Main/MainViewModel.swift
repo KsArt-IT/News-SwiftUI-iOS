@@ -11,6 +11,8 @@ final class MainViewModel: ObservableObject {
     
     private let repository: NewsRepository
     
+    @Published var isLoading = false
+    
     @Published var topNews: [NewsData] = []
     @Published var errorTopNews: String?
     private var pageTopNews = 1
@@ -34,10 +36,12 @@ final class MainViewModel: ObservableObject {
     
     // MARK: - Loading news
     private func fetchNews() async {
+        await showLoader()
         async let listTopNews = self.fetchTopNews()
         async let listAllNews = self.fetchAllNews()
         
         await self.setNews(top: await listTopNews, all: await listAllNews)
+        await showLoader(false)
     }
     
     private func fetchTopNews() async -> [NewsData]? {
@@ -70,6 +74,16 @@ final class MainViewModel: ObservableObject {
             await self.showErrorAllNews(error)
         }
         return nil
+    }
+    
+    public func loadMoreTopNews() {
+        print("MainViewModel: \(#function)")
+        
+    }
+    
+    public func loadMoreAllNews() {
+        print("MainViewModel: \(#function)")
+
     }
     
     public func fetchTopNews() {
@@ -152,5 +166,11 @@ final class MainViewModel: ObservableObject {
     @MainActor
     private func addAllNews(_ list: [NewsData]) async {
         self.allNews += list
+    }
+    
+    // MARK: - Loading
+    @MainActor
+    private func showLoader(_ show: Bool = true) {
+        self.isLoading = show
     }
 }

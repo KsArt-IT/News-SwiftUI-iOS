@@ -9,19 +9,35 @@ import SwiftUI
 
 struct MainScreen: View {
     @StateObject var viewModel: MainViewModel
+    @Binding var selected: NewsData?
     
     var body: some View {
         ZStack {
-            List {
-                ForEach(viewModel.topNews) { article in
-                    Text(article.title)
+            // ошибку или пустое поле
+            VStack(spacing: 0) {
+                // top news
+                Text("Top News")
+                TopNewsList(list: $viewModel.topNews, selected: $selected) {
+                    viewModel.loadMoreTopNews()
                 }
+                .border(.blue)
+                // all news
+                Text("All News")
+                AllNewsList(list: $viewModel.allNews, selected: $selected) {
+                    viewModel.loadMoreAllNews()
+                }
+                .border(.yellow)
             }
-            .listStyle(.plain)
+            .border(.red)
+            // loader
+            if viewModel.isLoading {
+                ProgressView()
+                    .progressViewStyle(.circular)
+            }
         }
     }
 }
 
 #Preview {
-    MainScreen(viewModel: MainViewModelPreview.shared)
+    MainScreen(viewModel: MainViewModelPreview.shared, selected: .constant(nil))
 }
