@@ -2,7 +2,20 @@
   "sourceLanguage" : "en",
   "strings" : {
     "All News" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все новости"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Всі новини"
+          }
+        }
+      }
     },
     "Decoding failed with error" : {
       "localizations" : {
@@ -39,7 +52,7 @@
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ru"
+            "value" : "en,ua,ru"
           }
         }
       }
@@ -116,7 +129,20 @@
       }
     },
     "Top News" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Главные новости"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Головні новини"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
