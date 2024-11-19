@@ -8,7 +8,7 @@
 import Foundation
 
 final class NewsRepositoryImpl: NewsRepository {
-
+    
     private let service: NewsService
     
     init(service: NewsService) {
@@ -27,19 +27,30 @@ final class NewsRepositoryImpl: NewsRepository {
         let result: Result<[NewsDataDto], any Error> = await service.fetchData(endpoint: endpoint)
         switch result {
         case .success(let news):
-            // TODO: переделать дозагрузку картинок
-//            var newsWithImage: [NewsData] = []
-//            for entity in news {
-//                let imageData = await service.fetchData(url: entity.imageUrl)
-//                newsWithImage.append(entity.mapToDomain(data: imageData))
-//            }
-//            return .success(newsWithImage)
-            return .success(news.map { $0.mapToDomain() })
+            return .success(await loadImageAndToDomain(news))
         case .failure(let error):
             return .failure(error)
         }
     }
-
+    
+    private func loadImageAndToDomain(_ list: [NewsDataDto]) async -> [NewsData] {
+        guard !list.isEmpty else { return [] }
+        
+        var result: [NewsData] = []
+        // Создаем массив асинхронных задач для загрузки изображений
+        let tasks = list.map { item in
+            Task {
+                let imageData = await service.fetchData(url: item.imageUrl)
+                return item.mapToDomain(data: imageData)
+            }
+        }
+        // Ждем выполнения всех задач и возвращаем результат
+        for task in tasks {
+            result.append(await task.value)
+        }
+        return result
+    }
+    
     func fetchNews(id: String) async -> Result<NewsData, any Error> {
         let result: Result<NewsDataDto, any Error> = await service.fetchData(endpoint: .news(id: id))
         switch result {

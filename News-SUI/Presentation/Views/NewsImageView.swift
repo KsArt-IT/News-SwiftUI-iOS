@@ -17,7 +17,7 @@ struct NewsImageView: View {
             if let data = data, let image = UIImage(data: data) {
                 Image(uiImage: image)
                     .resizable()
-                    .scaledToFit()
+                    .scaledToFill()
             } else {
                 Image("noImage")
                     .resizable()

@@ -29,7 +29,7 @@ struct NewsListHView: View {
             }
             .padding(.leading, Constants.small)
         }
-        .frame(height: Constants.frameV)
+        .frame(height: Constants.frameVh)
     }
 }
 

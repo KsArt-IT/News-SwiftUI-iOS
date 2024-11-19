@@ -27,6 +27,7 @@ struct NewsListVView: View {
                         reloading()
                     }
             }
+            .padding(.top, Constants.small)
         }
     }
 }

@@ -13,7 +13,7 @@ struct NewsItemVView: View {
     var body: some View {
         VStack(alignment: .leading) {
             NewsImageView(data: article.image)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: Constants.frameVi)
                 .clipShape(RoundedRectangle(cornerSize: Constants.cornerSize))
             Text(article.title)
                 .font(.title3)
@@ -24,7 +24,7 @@ struct NewsItemVView: View {
         .font(.caption)
         .lineLimit(2)
         .multilineTextAlignment(.leading)
-        .frame(width: Constants.frameV)
+        .frame(width: Constants.frameV, height: Constants.frameV)
         .padding(Constants.small)
         .background(.background)
         .clipShape(RoundedRectangle(cornerSize: Constants.cornerSize))
