@@ -17,24 +17,27 @@ struct MainScreen: View {
             VStack(spacing: 0) {
                 // top news
                 Text("Top News")
-                TopNewsList(list: $viewModel.topNews, selected: $selected) {
+                    .padding(.bottom, Constants.small)
+                NewsListHView(list: $viewModel.topNews, selected: $selected) {
                     viewModel.loadMoreTopNews()
                 }
-                .border(.blue)
+                .padding(.bottom, Constants.medium)
                 // all news
                 Text("All News")
-                AllNewsList(list: $viewModel.allNews, selected: $selected) {
+                    .padding(.bottom, Constants.small)
+                NewsListVView(list: $viewModel.allNews, selected: $selected) {
                     viewModel.loadMoreAllNews()
                 }
-                .border(.yellow)
+                .padding(.bottom, Constants.small)
             }
-            .border(.red)
             // loader
             if viewModel.isLoading {
                 ProgressView()
                     .progressViewStyle(.circular)
             }
         }
+        .font(.title2)
+        .background(.secondary.opacity(0.3))
     }
 }
 

@@ -29,7 +29,7 @@ struct ContentView: View {
         }
         .sheet(isPresented: $isSelected) {
             if let selected {
-                NewsView(article: selected)
+                NewsScreen(article: selected)
                     .presentationDetents([.large, .medium])
             }
         }
