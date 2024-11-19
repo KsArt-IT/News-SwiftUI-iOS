@@ -36,7 +36,7 @@ extension NewsDataDto {
             imageUrl: self.imageUrl,
             image: data,
             language: self.language,
-            publishedAt: self.publishedAt,
+            publishedAt: self.publishedAt.toDateFromIso8601(),
             source: self.source,
             categories: self.categories,
             locale: self.locale ?? ""

@@ -21,7 +21,7 @@ enum TopNewsPreview {
                 imageUrl: "https://focus.ua/static/storage/thumbs/1200x630/9/4a/4c389849-02c3df9b86bdd71cd22e70531c8fc4a9.jpg?v=1047_1",
                 image: nil,
                 language: "ru",
-                publishedAt: "2024-11-18T14:44:02.000000Z",
+                publishedAt: "2024-11-18T14:44:02.000000Z".toDateFromIso8601(),
                 source: "focus.ua",
                 categories: [],
                 locale: "ua"
@@ -38,7 +38,7 @@ enum TopNewsPreview {
                 imageUrl: "https://focus.ua/static/storage/thumbs/1200x630/1/44/a24deb49-29fe361602fccdc1ee6212184435a441.jpg?v=1469_1",
                 image: nil,
                 language: "ru",
-                publishedAt: "2024-11-18T14:43:07.000000Z",
+                publishedAt: "2024-11-18T14:43:07.000000Z".toDateFromIso8601(),
                 source: "focus.ua",
                 categories: [],
                 locale: "ua"
@@ -55,7 +55,7 @@ enum TopNewsPreview {
                 imageUrl: "https://focus.ua/static/storage/thumbs/1200x630/2/3d/769b4aa7-d0714f4792f1310d9eb7c1765b97a3d2.jpeg?v=1275_1",
                 image: nil,
                 language: "ru",
-                publishedAt: "2024-11-18T14:39:11.000000Z",
+                publishedAt: "2024-11-18T14:39:11.000000Z".toDateFromIso8601(),
                 source: "focus.ua",
                 categories: [],
                 locale: "ua"

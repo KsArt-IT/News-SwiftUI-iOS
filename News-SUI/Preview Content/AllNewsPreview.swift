@@ -21,7 +21,7 @@ enum AllNewsPreview {
                 imageUrl: "https://image.chinanews.com/cspimp/2024/11-18/19a99394-b7f2-46e8-88e7-d72b6be22579_big.JPG",
                 image: nil,
                 language: "en",
-                publishedAt: "2024-11-18T16:01:35.000000Z",
+                publishedAt: "2024-11-18T16:01:35.000000Z".toDateFromIso8601(),
                 source: "ecns.cn",
                 categories: ["general"],
                 locale: ""
@@ -38,7 +38,7 @@ enum AllNewsPreview {
                 imageUrl: "https://img9.yna.co.kr/etc/inner/EN/2024/11/18/AEN20241118007300320_03_i_P4.jpg",
                 image: nil,
                 language: "en",
-                publishedAt: "2024-11-18T16:00:11.000000Z",
+                publishedAt: "2024-11-18T16:00:11.000000Z".toDateFromIso8601(),
                 source: "yna.co.kr",
                 categories: ["general"],
                 locale: ""
@@ -55,7 +55,7 @@ enum AllNewsPreview {
                 imageUrl: "https://www.rbi.org.in/images/Rbinote.jpeg",
                 image: nil,
                 language: "en",
-                publishedAt: "2024-11-18T16:00:00.000000Z",
+                publishedAt: "2024-11-18T16:00:00.000000Z".toDateFromIso8601(),
                 source: "rbi.org.in",
                 categories: ["business","general"],
                 locale: ""

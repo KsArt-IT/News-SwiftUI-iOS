@@ -11,9 +11,9 @@ final class NewsServiceImpl: NewsService {
     
     private lazy var session = URLSession.shared
     private lazy var decoder: JSONDecoder = {
-        var decoder = JSONDecoder()
+        let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-        decoder.dateDecodingStrategy = .deferredToDate
+        decoder.dateDecodingStrategy = .iso8601
         
         return decoder
     }()
