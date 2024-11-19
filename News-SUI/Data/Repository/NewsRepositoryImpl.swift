@@ -27,12 +27,14 @@ final class NewsRepositoryImpl: NewsRepository {
         let result: Result<[NewsDataDto], any Error> = await service.fetchData(endpoint: endpoint)
         switch result {
         case .success(let news):
-            var newsWithImage: [NewsData] = []
-            for entity in news {
-                let imageData = await service.fetchData(url: entity.imageUrl)
-                newsWithImage.append(entity.mapToDomain(data: imageData))
-            }
-            return .success(newsWithImage)
+            // TODO: переделать дозагрузку картинок
+//            var newsWithImage: [NewsData] = []
+//            for entity in news {
+//                let imageData = await service.fetchData(url: entity.imageUrl)
+//                newsWithImage.append(entity.mapToDomain(data: imageData))
+//            }
+//            return .success(newsWithImage)
+            return .success(news.map { $0.mapToDomain() })
         case .failure(let error):
             return .failure(error)
         }

@@ -13,7 +13,7 @@ final class NewsServiceImpl: NewsService {
     private lazy var decoder: JSONDecoder = {
         var decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-        decoder.dateDecodingStrategy = .iso8601
+        decoder.dateDecodingStrategy = .deferredToDate
         
         return decoder
     }()
