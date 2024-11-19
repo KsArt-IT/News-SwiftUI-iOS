@@ -11,16 +11,20 @@ struct NewsImageView: View {
     let data: Data?
     
     var body: some View {
-        if let data = data, let image = UIImage(data: data) {
-            Image(uiImage: image)
-                .resizable()
-                .scaledToFit()
-        } else {
-            Image("noImage")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 20)
-                .clipped()
+        ZStack {
+            RoundedRectangle(cornerSize: Constants.cornerSize)
+                .foregroundStyle(.gray.opacity(0.3))
+            if let data = data, let image = UIImage(data: data) {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+            } else {
+                Image("noImage")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 20)
+                    .clipped()
+            }
         }
     }
 }

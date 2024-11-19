@@ -1,5 +1,5 @@
 //
-//  NewsList.swift
+//  NewsListHView.swift
 //  News-SUI
 //
 //  Created by KsArT on 18.11.2024.
@@ -7,21 +7,18 @@
 
 import SwiftUI
 
-struct TopNewsList: View {
+struct NewsListHView: View {
     @Binding var list: [NewsData]
     @Binding var selected: NewsData?
     let reloading: () -> Void
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            LazyHStack(spacing: 8) {
+            LazyHStack(spacing: 12) {
                 ForEach(list) { article in
-                    NewsItemView(article: article)
-                        .padding()
-                        .frame(width: 200, height: 200)
-                        .background(.white)
-                        .shadow(radius: 5)
+                    NewsItemVView(article: article)
                         .onTapGesture {
+                            print("NewsListHView: select=\(article.id)")
                             selected = article
                         }
                 }
@@ -30,11 +27,16 @@ struct TopNewsList: View {
                         reloading()
                     }
             }
+            .padding(.leading, Constants.small)
         }
-        .frame(height: 200)
+        .frame(height: Constants.frameV)
     }
 }
 
 #Preview {
-    TopNewsList(list: .constant(MainViewModelPreview.shared.topNews), selected: .constant(nil)) {}
+    VStack {
+        NewsListHView(list: .constant(TopNewsPreview.news), selected: .constant(nil)) {}
+        Spacer()
+    }
+    .background(.secondary.opacity(0.3))
 }
