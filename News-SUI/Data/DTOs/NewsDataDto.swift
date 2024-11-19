@@ -33,6 +33,7 @@ extension NewsDataDto {
             keywords: self.keywords,
             snippet: self.snippet,
             url: self.url,
+            imageUrl: self.imageUrl,
             image: data,
             language: self.language,
             publishedAt: self.publishedAt,
