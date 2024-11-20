@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NewsData: Identifiable, Decodable {
+struct NewsData: Identifiable, Hashable, Decodable {
     let id: String
     let title: String
     let description: String

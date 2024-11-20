@@ -20,6 +20,7 @@ struct MainScreen: View {
                     .padding(.bottom, Constants.small)
                 NewsListHView(list: $viewModel.topNews, selected: $selected) {
                     viewModel.loadMoreTopNews()
+//                    selected = TopNewsPreview.news[0]
                 }
                 .padding(.bottom, Constants.medium)
                 // all news
