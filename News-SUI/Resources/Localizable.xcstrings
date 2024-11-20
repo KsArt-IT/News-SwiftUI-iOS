@@ -129,23 +129,6 @@
         }
       }
     },
-    "Snippet:" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Фрагмент:"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Фрагмент:"
-          }
-        }
-      }
-    },
     "Source:" : {
       "localizations" : {
         "ru" : {

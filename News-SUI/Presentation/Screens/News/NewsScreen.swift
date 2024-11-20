@@ -13,62 +13,64 @@ struct NewsScreen: View {
     let article: NewsData
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            NewsImageGeometryView(data: article.image)
-            VStack(alignment: .leading, spacing: Constants.medium) {
-                if let date = article.publishedAt?.toString() {
-                    Text(date)
-                        .font(.caption2)
-                }
-                Text(article.title)
-                    .font(.title)
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity)
-                Text(article.description.isEmpty ? article.snippet : article.description)
-                    .font(.subheadline)
-                Spacer()
-                LabeledContent {
-                    Link(destination: URL(string: article.url)!) {
-                        HStack {
-                            Image(systemName: "link.circle")
-                            Text(article.source)
+        ZStack(alignment: .topLeading) {
+            ScrollView(.vertical, showsIndicators: false) {
+                NewsImageGeometryView(data: article.image)
+                VStack(alignment: .leading, spacing: Constants.medium) {
+                    if let date = article.publishedAt?.toString() {
+                        Text(date)
+                            .font(.caption2)
+                    }
+                    Text(article.title)
+                        .font(.title)
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity)
+                    Text(article.description.isEmpty ? article.snippet : article.description)
+                        .font(.subheadline)
+                    Spacer()
+                    LabeledContent {
+                        Link(destination: URL(string: article.url)!) {
+                            HStack {
+                                Image(systemName: "link.circle")
+                                Text(article.source)
+                            }
+                            .font(.headline)
+                            .foregroundColor(.green)
                         }
-                        .font(.headline)
-                        .foregroundColor(.green)
-                    }
-                } label: {
-                    Text("Source:")
-                }
-                if !article.keywords.isEmpty {
-                    LabeledContent {
-                        Text(article.keywords)
                     } label: {
-                        Text("Keywords:")
+                        Text("Source:")
+                    }
+                    if !article.keywords.isEmpty {
+                        LabeledContent {
+                            Text(article.keywords)
+                        } label: {
+                            Text("Keywords:")
+                        }
+                    }
+                    if !article.categories.isEmpty {
+                        LabeledContent {
+                            Text(article.categories)
+                        } label: {
+                            Text("Categories:")
+                        }
                     }
                 }
-                if !article.categories.isEmpty {
-                    LabeledContent {
-                        Text(article.categories)
-                    } label: {
-                        Text("Categories:")
-                    }
-                }
+                .font(.footnote)
+                .padding(.horizontal)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(.background)
+                .background(NewsImageBackrgound())
             }
-            .font(.footnote)
-            .padding(.horizontal)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(.background)
-            .background(NewsImageBackrgound())
-        }
-        .ignoresSafeArea()
-        .navigationBarHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigation) {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "chevron.left.circle.fill")
-                }
+            .ignoresSafeArea()
+            .navigationBarHidden(true)
+            Button {
+                dismiss()
+            } label: {
+                Image(systemName: "chevron.left.circle.fill")
+                    .font(.title)
+                    .fontWeight(.medium)
+                    .foregroundStyle(.background.opacity(0.75))
+                    .padding()
             }
         }
     }
