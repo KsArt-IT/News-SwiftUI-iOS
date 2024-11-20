@@ -17,7 +17,7 @@ struct NewsData: Identifiable, Hashable, Decodable {
     let imageUrl: String
     let image: Data?
     let language: String
-    let publishedAt: Date?
+    let publishedAt: Date
     let source: String
     let categories: String
     let locale: String

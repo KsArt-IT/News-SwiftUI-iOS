@@ -17,10 +17,8 @@ struct NewsScreen: View {
             ScrollView(.vertical, showsIndicators: false) {
                 NewsImageGeometryView(data: article.image)
                 VStack(alignment: .leading, spacing: Constants.medium) {
-                    if let date = article.publishedAt?.toString() {
-                        Text(date)
-                            .font(.caption2)
-                    }
+                    Text(article.publishedAt.toString())
+                        .font(.caption2)
                     Text(article.title)
                         .font(.title)
                         .multilineTextAlignment(.center)

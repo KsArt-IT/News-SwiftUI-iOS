@@ -160,12 +160,12 @@ final class MainViewModel: ObservableObject {
     
     @MainActor
     private func addTopNews(_ list: [NewsData]) async {
-        self.topNews += list
+        self.topNews = Set(self.topNews + list).sorted(by: { $0.publishedAt > $1.publishedAt })
     }
     
     @MainActor
     private func addAllNews(_ list: [NewsData]) async {
-        self.allNews += list
+        self.allNews = Set(self.allNews + list).sorted(by: { $0.publishedAt > $1.publishedAt })
     }
     
     // MARK: - Loading

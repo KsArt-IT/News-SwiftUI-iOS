@@ -19,7 +19,7 @@ struct NewsItemVView: View {
                 .font(.title3)
             Text(article.description)
             Spacer()
-            Text(article.publishedAt?.toString() ?? "")
+            Text(article.publishedAt.toString())
         }
         .font(.caption)
         .lineLimit(2)

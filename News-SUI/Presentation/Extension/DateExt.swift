@@ -14,8 +14,8 @@ extension Date {
 }
 
 extension String {
-    func toDateFromIso8601() -> Date? {
-        DateFormater.toDate(from: self)
+    func toDateFromIso8601() -> Date {
+        DateFormater.toDate(from: self) ?? Date.distantPast
     }
 }
 
