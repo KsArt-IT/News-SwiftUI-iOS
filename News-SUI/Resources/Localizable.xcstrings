@@ -17,6 +17,23 @@
         }
       }
     },
+    "Categories:" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Категории:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Категорії:"
+          }
+        }
+      }
+    },
     "Decoding failed with error" : {
       "localizations" : {
         "ru" : {
@@ -29,6 +46,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Помилка декодування"
+          }
+        }
+      }
+    },
+    "Keywords:" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключевые слова:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ключові слова:"
           }
         }
       }
@@ -92,6 +125,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сталася помилка мережі"
+          }
+        }
+      }
+    },
+    "Snippet:" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фрагмент:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фрагмент:"
+          }
+        }
+      }
+    },
+    "Source:" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Источник:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Джерело:"
           }
         }
       }

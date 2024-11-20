@@ -23,7 +23,7 @@ enum TopNewsPreview {
                 language: "ru",
                 publishedAt: "2024-11-18T14:44:02.000000Z".toDateFromIso8601(),
                 source: "focus.ua",
-                categories: [],
+                categories: "",
                 locale: "ua"
             )
         )
@@ -40,7 +40,7 @@ enum TopNewsPreview {
                 language: "ru",
                 publishedAt: "2024-11-18T14:43:07.000000Z".toDateFromIso8601(),
                 source: "focus.ua",
-                categories: [],
+                categories: "",
                 locale: "ua"
             )
         )
@@ -57,7 +57,7 @@ enum TopNewsPreview {
                 language: "ru",
                 publishedAt: "2024-11-18T14:39:11.000000Z".toDateFromIso8601(),
                 source: "focus.ua",
-                categories: [],
+                categories: "",
                 locale: "ua"
             )
         )

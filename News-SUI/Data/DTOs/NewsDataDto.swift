@@ -38,7 +38,7 @@ extension NewsDataDto {
             language: self.language,
             publishedAt: self.publishedAt.toDateFromIso8601(),
             source: self.source,
-            categories: self.categories,
+            categories: !self.categories.isEmpty ? self.categories.joined(separator: ",") : "",
             locale: self.locale ?? ""
         )
     }

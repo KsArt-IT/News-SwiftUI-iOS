@@ -23,7 +23,7 @@ enum AllNewsPreview {
                 language: "en",
                 publishedAt: "2024-11-18T16:01:35.000000Z".toDateFromIso8601(),
                 source: "ecns.cn",
-                categories: ["general"],
+                categories: "general",
                 locale: ""
             )
         )
@@ -40,7 +40,7 @@ enum AllNewsPreview {
                 language: "en",
                 publishedAt: "2024-11-18T16:00:11.000000Z".toDateFromIso8601(),
                 source: "yna.co.kr",
-                categories: ["general"],
+                categories: "general",
                 locale: ""
             )
         )
@@ -57,7 +57,7 @@ enum AllNewsPreview {
                 language: "en",
                 publishedAt: "2024-11-18T16:00:00.000000Z".toDateFromIso8601(),
                 source: "rbi.org.in",
-                categories: ["business","general"],
+                categories: "business,general",
                 locale: ""
             )
         )

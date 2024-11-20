@@ -25,10 +25,9 @@ struct ContentView: View {
                 selected = nil
             }
         }
-        .sheet(isPresented: $isSelected) {
+        .fullScreenCover(isPresented: $isSelected) {
             if let selected {
                 NewsScreen(article: selected)
-                    .presentationDetents([.large, .medium], selection: .constant(.large))
             }
         }
     }

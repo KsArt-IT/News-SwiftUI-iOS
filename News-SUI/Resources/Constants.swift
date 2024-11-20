@@ -5,7 +5,7 @@
 //  Created by KsArT on 19.11.2024.
 //
 
-import Foundation
+import UIKit
 
 enum Constants {
     static let small: CGFloat = 8
@@ -22,4 +22,12 @@ enum Constants {
     
     static let cornerRadius: CGFloat = 8
     static let cornerSize = CGSize(width: 8, height: 8)
+    
+    static var photoHeight: CGFloat {
+        UIScreen.main.bounds.height / 2
+    }
+    
+    static var screenWidth: CGFloat {
+        UIScreen.main.bounds.width
+    }
 }
