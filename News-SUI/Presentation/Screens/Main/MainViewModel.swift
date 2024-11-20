@@ -78,12 +78,12 @@ final class MainViewModel: ObservableObject {
     
     public func loadMoreTopNews() {
         print("MainViewModel: \(#function)")
-        
+        fetchTopNews()
     }
     
     public func loadMoreAllNews() {
         print("MainViewModel: \(#function)")
-
+        fetchAllNews()
     }
     
     public func fetchTopNews() {
