@@ -33,7 +33,8 @@ struct NewsScreen: View {
                                 Text(article.source)
                             }
                             .font(.headline)
-                            .foregroundColor(.green)
+                            .underline()
+                            .foregroundColor(.blue)
                         }
                     } label: {
                         Text("Source:")
@@ -67,8 +68,9 @@ struct NewsScreen: View {
                 Image(systemName: "chevron.left.circle.fill")
                     .font(.title)
                     .fontWeight(.medium)
-                    .foregroundStyle(.background.opacity(0.75))
+                    .foregroundStyle(Color.backButton)
                     .padding()
+                    .opacity(0.5)
             }
         }
     }
