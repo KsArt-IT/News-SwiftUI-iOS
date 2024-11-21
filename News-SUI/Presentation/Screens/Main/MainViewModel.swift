@@ -15,12 +15,22 @@ final class MainViewModel: ObservableObject {
     
     @Published var topNews: [NewsData] = []
     @Published var errorTopNews: String?
+    @Published var topNewsState: ReloadingState = .none
     private var pageTopNews = 1
+    private var countTopNews: Int = 10000
+    private var isMoreTopNews: Bool {
+        countTopNews > topNews.count
+    }
     private var taskTopNews: Task<Void, Never>?
     
     @Published var allNews: [NewsData] = []
     @Published var errorAllNews: String?
+    @Published var allNewsState: ReloadingState = .none
     private var pageAllNews = 1
+    private var countAllNews: Int = 10000
+    private var isMoreAllNews: Bool {
+        countAllNews > allNews.count
+    }
     private var taskAllNews: Task<Void, Never>?
     
     @Published var languageNews: String = String(localized: "language")
@@ -35,13 +45,24 @@ final class MainViewModel: ObservableObject {
     }
     
     // MARK: - Loading news
+    // первая загрузка новостей, загрузим количество
     private func fetchNews() async {
         await showLoader()
+        // загрузим количество
+        
         async let listTopNews = self.fetchTopNews()
         async let listAllNews = self.fetchAllNews()
         
         await self.setNews(top: await listTopNews, all: await listAllNews)
+        
         await showLoader(false)
+        // установим состояние дозагрузки
+        if self.topNewsState == .none {
+            await self.setTopNewsState(.reload)
+        }
+        if self.allNewsState == .none {
+            await self.setAllNewsState(.reload)
+        }
     }
     
     private func fetchTopNews() async -> [NewsData]? {
@@ -52,10 +73,10 @@ final class MainViewModel: ObservableObject {
         )
         switch result {
         case .success(let news):
-            pageTopNews += 1
+            self.pageTopNews += 1
             return news
         case .failure(let error):
-            await self.showErrorTopNews(error)
+            await self.setTopNewsState(.error(message: self.getErrorMessage(error)))
         }
         return nil
     }
@@ -71,11 +92,12 @@ final class MainViewModel: ObservableObject {
             pageAllNews += 1
             return news
         case .failure(let error):
-            await self.showErrorAllNews(error)
+            await self.setAllNewsState(.error(message: self.getErrorMessage(error)))
         }
         return nil
     }
     
+    // MARK: - Loading more news
     public func loadMoreTopNews() {
         print("MainViewModel: \(#function)")
         fetchTopNews()
@@ -92,6 +114,7 @@ final class MainViewModel: ObservableObject {
         taskTopNews = Task { [weak self] in
             guard let self else { return }
             
+            await self.setTopNewsState(.loading)
             let result = await self.repository.fetchTopNews(
                 locale: self.localeNews,
                 language: self.languageNews,
@@ -101,8 +124,9 @@ final class MainViewModel: ObservableObject {
             case .success(let news):
                 pageTopNews += 1
                 await self.addTopNews(news)
+                await self.setTopNewsState(.reload)
             case .failure(let error):
-                await self.showErrorTopNews(error)
+                await self.setTopNewsState(.error(message: self.getErrorMessage(error)))
             }
         }
     }
@@ -113,6 +137,7 @@ final class MainViewModel: ObservableObject {
         taskTopNews = Task { [weak self] in
             guard let self else { return }
             
+            await self.setAllNewsState(.loading)
             let result = await self.repository.fetchAllNews(
                 locale: self.localeNews,
                 language: self.languageNews,
@@ -122,32 +147,19 @@ final class MainViewModel: ObservableObject {
             case .success(let news):
                 pageAllNews += 1
                 await self.addAllNews(news)
+                await self.setAllNewsState(.reload)
             case .failure(let error):
-                await self.showErrorAllNews(error)
+                await self.setAllNewsState(.error(message: self.getErrorMessage(error)))
             }
         }
     }
     
     // MARK: - Show errors
-    @MainActor
-    private func showErrorTopNews(_ error: Error) async {
+    private func getErrorMessage(_ error: Error) -> String {
         if let error = error as? NetworkError {
-            print("MainViewModel: \(#function) error: \(error.localizedDescription)")
-            errorTopNews = error.localizedDescription
+            error.localizedDescription
         } else {
-            print("MainViewModel: \(#function) error: \(error.localizedDescription)")
-            errorTopNews = error.localizedDescription
-        }
-    }
-    
-    @MainActor
-    private func showErrorAllNews(_ error: Error) async {
-        if let error = error as? NetworkError {
-            print("MainViewModel: \(#function) error: \(error.localizedDescription)")
-            errorAllNews = error.localizedDescription
-        } else {
-            print("MainViewModel: \(#function) error: \(error.localizedDescription)")
-            errorAllNews = error.localizedDescription
+            error.localizedDescription
         }
     }
     
@@ -173,4 +185,23 @@ final class MainViewModel: ObservableObject {
     private func showLoader(_ show: Bool = true) {
         self.isLoading = show
     }
+    
+    @MainActor
+    private func setTopNewsState(_ state: ReloadingState) {
+        self.topNewsState = if case .reload = state, !isMoreTopNews {
+            .none
+        } else {
+            state
+        }
+    }
+
+    @MainActor
+    private func setAllNewsState(_ state: ReloadingState) {
+        self.allNewsState = if case .reload = state, !isMoreAllNews {
+            .none
+        } else {
+            state
+        }
+    }
+
 }

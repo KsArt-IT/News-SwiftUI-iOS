@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct NewsListVView: View {
+struct NewsListVView<Content: View>: View {
     @Binding var list: [NewsData]
     @Binding var selected: NewsData?
-    let reloading: () -> Void
+    @ViewBuilder let reloadView: () -> Content
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -22,10 +22,8 @@ struct NewsListVView: View {
                             selected = article
                         }
                 }
-                Color.clear
-                    .onAppear {
-                        reloading()
-                    }
+                // отобразим дозагрузку
+                reloadView()
             }
             .padding(.top, Constants.small)
         }
@@ -33,5 +31,9 @@ struct NewsListVView: View {
 }
 
 #Preview {
-    NewsListVView(list: .constant(AllNewsPreview.news), selected: .constant(nil)) {}
+    VStack {
+        NewsListVView(list: .constant(AllNewsPreview.news), selected: .constant(nil)) {}
+        Spacer()
+    }
+    .background(.secondary.opacity(0.3))
 }

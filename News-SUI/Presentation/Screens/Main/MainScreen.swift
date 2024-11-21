@@ -19,15 +19,23 @@ struct MainScreen: View {
                 Text("Top News")
                     .padding(.bottom, Constants.small)
                 NewsListHView(list: $viewModel.topNews, selected: $selected) {
-                    viewModel.loadMoreTopNews()
-//                    selected = TopNewsPreview.news[0]
+                    if viewModel.topNewsState != .none {
+                        ReloadingView(state: $viewModel.topNewsState) {
+                            viewModel.loadMoreTopNews()
+                        }
+                        .frame(maxWidth: Constants.frameV, idealHeight: Constants.frameV)
+                    }
                 }
                 .padding(.bottom, Constants.medium)
                 // all news
                 Text("All News")
                     .padding(.bottom, Constants.small)
                 NewsListVView(list: $viewModel.allNews, selected: $selected) {
-                    viewModel.loadMoreAllNews()
+                    if viewModel.allNewsState != .none {
+                        ReloadingView(state: $viewModel.allNewsState) {
+                            viewModel.loadMoreAllNews()
+                        }
+                    }
                 }
                 .padding(.bottom, Constants.small)
             }

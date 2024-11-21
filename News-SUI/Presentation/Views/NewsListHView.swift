@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct NewsListHView: View {
+struct NewsListHView<Content: View>: View {
     @Binding var list: [NewsData]
     @Binding var selected: NewsData?
-    let reloading: () -> Void
+    @ViewBuilder let reloadView: () -> Content
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -22,10 +22,8 @@ struct NewsListHView: View {
                             selected = article
                         }
                 }
-                Color.clear
-                    .onAppear {
-                        reloading()
-                    }
+                // отобразим дозагрузку
+                reloadView()
             }
             .padding(.leading, Constants.small)
         }
