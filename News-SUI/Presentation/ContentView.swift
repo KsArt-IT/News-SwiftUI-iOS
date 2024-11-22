@@ -8,13 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(\.diManager) var di
+    @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.diManager) private var di
+    
     @State var selected: NewsData?
-    @State var isSelected = false
+    @State private var isSelected = false
+    
+    @AppStorage("appTheme") private var appTheme = AppTheme.light
     
     var body: some View {
         NavigationStack {
             MainScreen(viewModel: di.resolve(), selected: $selected)
+        }
+        .preferredColorScheme(appTheme.scheme)
+        .task {
+            if AppTheme.deviceTheme == nil {
+                print("ContentView: deviceTheme = \(colorScheme)")
+                AppTheme.deviceTheme = colorScheme
+            }
         }
         .onChange(of: selected) {
             isSelected = selected != nil
