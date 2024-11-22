@@ -16,8 +16,6 @@ struct MainScreen: View {
             // ошибку или пустое поле
             VStack(spacing: 0) {
                 // top news
-                Text("Top News")
-                    .padding(.bottom, Constants.small)
                 NewsListHView(list: $viewModel.topNews, selected: $selected) {
                     if viewModel.topNewsState != .none {
                         ReloadingView(state: $viewModel.topNewsState) {
@@ -47,6 +45,8 @@ struct MainScreen: View {
         }
         .font(.title2)
         .background(.secondary.opacity(0.3))
+        .navigationTitle("Top News")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

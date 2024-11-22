@@ -19,12 +19,49 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             MainScreen(viewModel: di.resolve(), selected: $selected)
+                .toolbar {
+                    ToolbarItem(placement: .primaryAction) {
+                        Menu {
+                            Section("Theme:") {
+                                Button {
+                                    appTheme = .device
+                                } label: {
+                                    Label(
+                                        "Device",
+                                        systemImage: appTheme == .device ? "checkmark.circle" : "circle"
+                                    )
+                                }
+                                Button {
+                                    appTheme = .light
+                                } label: {
+                                    Label(
+                                        "Light",
+                                        systemImage: appTheme == .light ? "checkmark.circle" : "circle"
+                                    )
+                                }
+                                Button {
+                                    appTheme = .dark
+                                } label: {
+                                    Label(
+                                        "Dark",
+                                        systemImage: appTheme == .dark ? "checkmark.circle" : "circle"
+                                    )
+                                }
+                            }
+                        } label: {
+                            Label("Options", systemImage: "ellipsis.circle")
+                        }
+                    }
+                }
         }
         .preferredColorScheme(appTheme.scheme)
         .task {
             if AppTheme.deviceTheme == nil {
-                print("ContentView: deviceTheme = \(colorScheme)")
                 AppTheme.deviceTheme = colorScheme
+                if appTheme == .device {
+                    appTheme = colorScheme == .dark ? .dark : .light
+                }
+                print("ContentView: deviceTheme = \(colorScheme) appTheme = \(appTheme)")
             }
         }
         .onChange(of: selected) {

@@ -34,6 +34,22 @@
         }
       }
     },
+    "Dark" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Темная"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Темна"
+          }
+        }
+      }
+    },
     "Decoding failed with error" : {
       "localizations" : {
         "ru" : {
@@ -46,6 +62,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Помилка декодування"
+          }
+        }
+      }
+    },
+    "Device" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Как на устройстве"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Як на пристрої"
           }
         }
       }
@@ -90,6 +122,22 @@
         }
       }
     },
+    "Light" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Светлая"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Світла"
+          }
+        }
+      }
+    },
     "locale" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -125,6 +173,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сталася помилка мережі"
+          }
+        }
+      }
+    },
+    "Options" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Опции"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Опції"
           }
         }
       }
@@ -173,6 +237,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Відповідь недійсна, код"
+          }
+        }
+      }
+    },
+    "Theme:" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема:"
           }
         }
       }
