@@ -7,7 +7,7 @@
 
 import SwiftUICore
 
-enum AppTheme: Int, Hashable {
+enum AppTheme: Int {
     case device
     case light
     case dark
@@ -26,5 +26,13 @@ extension AppTheme {
         case .dark:
                 .dark
         }
+    }
+    
+    func scheme(_ scheme: ColorScheme) -> ColorScheme {
+        // сохраним значение на устройстве
+        if Self.deviceTheme == nil {
+            Self.deviceTheme = scheme
+        }
+        return self.scheme
     }
 }

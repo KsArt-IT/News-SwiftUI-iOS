@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    // получим тему на устройстве
     @Environment(\.colorScheme) private var colorScheme
+    // сохраним-загрузим выбранную тему
+    @AppStorage("appTheme") private var appTheme = AppTheme.device
+
     @Environment(\.diManager) private var di
     
     @State var selected: NewsData?
     @State private var isSelected = false
-    
-    @AppStorage("appTheme") private var appTheme = AppTheme.light
     
     var body: some View {
         NavigationStack {
@@ -54,16 +56,7 @@ struct ContentView: View {
                     }
                 }
         }
-        .preferredColorScheme(appTheme.scheme)
-        .task {
-            if AppTheme.deviceTheme == nil {
-                AppTheme.deviceTheme = colorScheme
-                if appTheme == .device {
-                    appTheme = colorScheme == .dark ? .dark : .light
-                }
-                print("ContentView: deviceTheme = \(colorScheme) appTheme = \(appTheme)")
-            }
-        }
+        .preferredColorScheme(appTheme.scheme(colorScheme))
         .onChange(of: selected) {
             isSelected = selected != nil
             print("ContentView: selected = \(selected?.id ?? "nil")")
