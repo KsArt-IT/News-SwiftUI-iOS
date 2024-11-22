@@ -132,9 +132,9 @@ final class MainViewModel: ObservableObject {
     }
     
     public func fetchAllNews() {
-        taskTopNews?.cancel()
+        taskAllNews?.cancel()
         
-        taskTopNews = Task { [weak self] in
+        taskAllNews = Task { [weak self] in
             guard let self else { return }
             
             await self.setAllNewsState(.loading)
