@@ -8,6 +8,12 @@
 import UIKit
 
 enum Constants {
+    // Название приложения из Bundle
+    static let appName: String = {
+        Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ??
+        Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? "News"
+    }()
+
     static let small: CGFloat = 8
     static let medium: CGFloat = 16
     

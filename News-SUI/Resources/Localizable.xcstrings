@@ -98,6 +98,9 @@
         }
       }
     },
+    "KsArT.pro" : {
+      "shouldTranslate" : false
+    },
     "language" : {
       "comment" : "language news",
       "extractionState" : "manual",
