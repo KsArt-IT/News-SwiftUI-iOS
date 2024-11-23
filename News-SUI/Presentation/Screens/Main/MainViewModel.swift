@@ -12,6 +12,7 @@ final class MainViewModel: ObservableObject {
     private let repository: NewsRepository
     
     @Published var isLoading = false
+    @Published var isSplashVisible = true
     
     @Published var topNews: [NewsData] = []
     @Published var errorTopNews: String?
@@ -168,6 +169,8 @@ final class MainViewModel: ObservableObject {
     private func setNews(top listTop: [NewsData]?, all listAll: [NewsData]?) async {
         self.topNews = listTop ?? []
         self.allNews = listAll ?? []
+        // спрячем
+        self.isSplashVisible = false
     }
     
     @MainActor

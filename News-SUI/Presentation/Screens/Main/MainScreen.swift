@@ -12,41 +12,46 @@ struct MainScreen: View {
     @Binding var selected: NewsData?
     
     var body: some View {
-        ZStack {
-            // ошибку или пустое поле
-            VStack(spacing: 0) {
-                // top news
-                NewsListHView(list: $viewModel.topNews, selected: $selected) {
-                    if viewModel.topNewsState != .none {
-                        ReloadingView(state: $viewModel.topNewsState) {
-                            viewModel.loadMoreTopNews()
+        if viewModel.isSplashVisible {
+            SplashScreen()
+                .navigationBarHidden(true)
+        } else {
+            ZStack {
+                // ошибку или пустое поле
+                VStack(spacing: 0) {
+                    // top news
+                    NewsListHView(list: $viewModel.topNews, selected: $selected) {
+                        if viewModel.topNewsState != .none {
+                            ReloadingView(state: $viewModel.topNewsState) {
+                                viewModel.loadMoreTopNews()
+                            }
+                            .frame(maxWidth: Constants.frameV, idealHeight: Constants.frameV)
                         }
-                        .frame(maxWidth: Constants.frameV, idealHeight: Constants.frameV)
                     }
-                }
-                .padding(.bottom, Constants.medium)
-                // all news
-                Text("All News")
+                    .padding(.bottom, Constants.medium)
+                    // all news
+                    Text("All News")
+                        .padding(.bottom, Constants.small)
+                    NewsListVView(list: $viewModel.allNews, selected: $selected) {
+                        if viewModel.allNewsState != .none {
+                            ReloadingView(state: $viewModel.allNewsState) {
+                                viewModel.loadMoreAllNews()
+                            }
+                        }
+                    }
                     .padding(.bottom, Constants.small)
-                NewsListVView(list: $viewModel.allNews, selected: $selected) {
-                    if viewModel.allNewsState != .none {
-                        ReloadingView(state: $viewModel.allNewsState) {
-                            viewModel.loadMoreAllNews()
-                        }
-                    }
                 }
-                .padding(.bottom, Constants.small)
+                // loader
+                if viewModel.isLoading {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                }
             }
-            // loader
-            if viewModel.isLoading {
-                ProgressView()
-                    .progressViewStyle(.circular)
-            }
+            .font(.title2)
+            .background(.secondary.opacity(0.3))
+            .navigationTitle("Top News")
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .font(.title2)
-        .background(.secondary.opacity(0.3))
-        .navigationTitle("Top News")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
