@@ -26,9 +26,9 @@ struct NewsItemVView: View {
         .multilineTextAlignment(.leading)
         .frame(width: Constants.frameV, height: Constants.frameV)
         .padding(Constants.small)
-        .background(.background)
+        .background(.backgroundNews)
         .clipShape(RoundedRectangle(cornerSize: Constants.cornerSize))
-        .shadow(radius: Constants.shadowRadius)
+        .shadow(radius: Constants.shadowRadius, x: Constants.shadowOffset, y: Constants.shadowOffset)
     }
 }
 

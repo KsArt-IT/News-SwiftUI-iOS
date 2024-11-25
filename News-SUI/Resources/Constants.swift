@@ -25,6 +25,7 @@ enum Constants {
     static let frameHw: CGFloat = frameH / 1.5
     
     static let shadowRadius: CGFloat = 4
+    static let shadowOffset: CGFloat = shadowRadius / 2
     
     static let cornerRadius: CGFloat = 8
     static let cornerSize = CGSize(width: 8, height: 8)

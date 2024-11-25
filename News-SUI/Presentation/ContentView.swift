@@ -27,6 +27,7 @@ struct ContentView: View {
                     }
                 }
         }
+        .background(.backgroundNews)
         .preferredColorScheme(appTheme.scheme(colorScheme))
         .onChange(of: selected) {
             isSelected = selected != nil
