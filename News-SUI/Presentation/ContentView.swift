@@ -23,36 +23,7 @@ struct ContentView: View {
             MainScreen(viewModel: di.resolve(), selected: $selected)
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
-                        Menu {
-                            Section("Theme:") {
-                                Button {
-                                    appTheme = .device
-                                } label: {
-                                    Label(
-                                        "Device",
-                                        systemImage: appTheme == .device ? "checkmark.circle" : "circle"
-                                    )
-                                }
-                                Button {
-                                    appTheme = .light
-                                } label: {
-                                    Label(
-                                        "Light",
-                                        systemImage: appTheme == .light ? "checkmark.circle" : "circle"
-                                    )
-                                }
-                                Button {
-                                    appTheme = .dark
-                                } label: {
-                                    Label(
-                                        "Dark",
-                                        systemImage: appTheme == .dark ? "checkmark.circle" : "circle"
-                                    )
-                                }
-                            }
-                        } label: {
-                            Label("Options", systemImage: "ellipsis.circle")
-                        }
+                        ToolbarMenuView(appTheme: $appTheme)
                     }
                 }
         }
