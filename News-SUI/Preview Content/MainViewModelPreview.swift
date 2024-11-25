@@ -12,6 +12,14 @@ final class MainViewModelPreview: Observable {
 }
 
 private final class NewsRepositoryPreview: NewsRepository {
+    func fetchTopNewsCount(locale: String, language: String) async -> Int? {
+        3
+    }
+    
+    func fetchAllNewsCount(locale: String, language: String) async -> Int? {
+        3
+    }
+    
     func fetchTopNews(locale: String, language: String, page: Int) async -> Result<[NewsData], any Error> {
         .success(TopNewsPreview.news)
     }

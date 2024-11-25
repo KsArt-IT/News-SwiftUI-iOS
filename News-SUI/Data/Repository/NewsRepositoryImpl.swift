@@ -15,6 +15,14 @@ final class NewsRepositoryImpl: NewsRepository {
         self.service = service
     }
     
+    func fetchTopNewsCount(locale: String, language: String) async -> Int? {
+        await service.fetchDataCount(endpoint: .top(locale: locale, language: language, page: NewsEndpoint.pageStart))
+    }
+    
+    func fetchAllNewsCount(locale: String, language: String) async -> Int? {
+        await service.fetchDataCount(endpoint: .all(language: language, page: NewsEndpoint.pageStart))
+    }
+    
     func fetchTopNews(locale: String, language: String, page: Int) async -> Result<[NewsData], any Error> {
         await fetchData(endpoint: .top(locale: locale, language: language, page: page))
     }

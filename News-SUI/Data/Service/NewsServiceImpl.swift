@@ -19,9 +19,22 @@ final class NewsServiceImpl: NewsService {
     }()
     
     // MARK: - Getting data from the network
+    func fetchDataCount(endpoint: NewsEndpoint) async -> Int? {
+        guard let request = endpoint.request else { return nil }
+        
+        do {
+            let data = try await fetchData(for: request)
+            let result: NewsResponse = try decodeNews(data)
+            
+            return result.meta.found
+        } catch {
+            return nil
+        }
+    }
+    
     func fetchData<T>(endpoint: NewsEndpoint) async -> Result<T, any Error> where T : Decodable {
         guard let request = endpoint.request else { return .failure(NetworkError.invalidRequest) }
-        print("NewsServiceImpl: \(#function) url: \(request.url?.absoluteString)")
+        print("NewsServiceImpl: \(#function) url: \(request.url?.absoluteString ?? "")")
 
         do {
             let data = try await fetchData(for: request)

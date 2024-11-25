@@ -49,8 +49,17 @@ final class MainViewModel: ObservableObject {
     // первая загрузка новостей, загрузим количество
     private func fetchNews() async {
         await showLoader()
-        // загрузим количество
         
+        // загрузим количество
+        self.countTopNews = await self.repository.fetchTopNewsCount(
+            locale: self.localeNews,
+            language: self.languageNews
+        ) ?? countTopNews
+        self.countAllNews = await self.repository.fetchAllNewsCount(
+            locale: self.localeNews,
+            language: self.languageNews
+        ) ?? countAllNews
+
         async let listTopNews = self.fetchTopNews()
         async let listAllNews = self.fetchAllNews()
         
