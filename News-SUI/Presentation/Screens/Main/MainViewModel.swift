@@ -11,6 +11,8 @@ final class MainViewModel: ObservableObject {
     
     private let repository: NewsRepository
     
+    // начальная загрузка
+    var isInitialLoading = true
     @Published var isLoading = false
     @Published var isSplashVisible = true
     
@@ -40,12 +42,19 @@ final class MainViewModel: ObservableObject {
     init(repository: NewsRepository) {
         self.repository = repository
         
-        Task {
-            await fetchNews()
-        }
+        fetchNewsFirst()
     }
     
     // MARK: - Loading news
+    public func fetchNewsFirst() {
+        guard isInitialLoading && taskTopNews == nil else { return }
+        
+        taskTopNews = Task { [weak self] in
+            await self?.fetchNews()
+            self?.taskTopNews = nil
+        }
+    }
+    
     // первая загрузка новостей, загрузим количество
     private func fetchNews() async {
         await showLoader()
@@ -178,7 +187,10 @@ final class MainViewModel: ObservableObject {
     private func setNews(top listTop: [NewsData]?, all listAll: [NewsData]?) async {
         self.topNews = listTop ?? []
         self.allNews = listAll ?? []
-        // спрячем
+
+        // проверим прошла ли первоначальная загрузка
+        self.isInitialLoading = self.topNews.isEmpty && self.allNews.isEmpty
+        // убирем Splash Screen
         self.isSplashVisible = false
     }
     
